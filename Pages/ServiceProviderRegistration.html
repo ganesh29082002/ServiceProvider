@@ -27,7 +27,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="HomePage.css" />
+    <link rel="stylesheet" href="ServiceProviderRegistration.css" />
 
     <style>
         button {
@@ -38,7 +38,162 @@
 </head>
 
 <body>
-   
+    <div class="container outercontainer ">
+        <div class="row ">
+          <div
+            class="h-100  d-flex align-items-center justify-content-center mt-5 w-100"
+          >
+  
+          
+            <form class="w-100">
+              <div class="form-row ">
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">First Name</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="inputEmail4"
+                    placeholder="First Name"
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">Last Name</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="inputPassword4"
+                    placeholder="Last Name"
+                  />
+                </div>
+              </div>
+  
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Age</label>
+                  <select id="inputState" class="form-control">
+                    <option selected disabled>Choose...</option>
+                    <option>20</option>
+                    <option>21</option>
+                    <option>22</option>
+                    <option>23</option>
+                    <option>24</option>
+                    <option>25</option>
+                    <option>26</option>
+                    <option>27</option>
+                    <option>28</option>
+                    <option>29</option>
+                    <option>30</option>
+                    <option>31</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputState">Gender</label>
+                  <select id="inputState" class="form-control">
+                    <option selected disabled>Choose...</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Non-Binary</option>
+                  </select>
+                </div>
+              </div>
+  
+              <div class="form-group">
+                <label for="inputAddress">Address</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputAddress"
+                  placeholder="1234 Main St"
+                />
+              </div>
+  
+              <div class="form-group col">
+                <input type="file" class="custom-file-input" id="customFile" />
+                <label class="custom-file-label" for="customFile"
+                  >Upload Addhar Card</label
+                >
+              </div>
+  
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Addhar Number</label>
+                  <input type="Nuber" class="form-control" id="inputEmail4" />
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">DOB</label>
+                  <input type="date" class="form-control" id="inputPassword4" />
+                </div>
+              </div>
+  
+  
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <button class="btn btn-outline-secondary" type="button">Choose Category</button>
+                </div>
+                <select class="custom-select" id="inputGroupSelect03" aria-label="Example select with button addon">
+                  <option value="" disabled selected>select...</option>
+                    <option value="">Home & Services</option>
+                    <option value="">Home Improvment</option>
+                    <option value="">Professional</option>
+                    <option value="">Health & Wellness</option>
+                    <option value="">Travel & Transport</option>
+                    <option value="">Events</option>
+                </select>
+              </div>
+  
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <button class="btn btn-outline-secondary" type="button">Choose Service</button>
+                </div>
+                <select class="custom-select" id="inputGroupSelect03" aria-label="Example select with button addon">
+                
+                    <option value="" disabled selected>select...</option>
+                    <option value="">Air Cooler Dealers</option>
+                    <option value="">Air Purifier Dealers</option>
+                    <option value="">Exhaust Fan Dealers</option>
+                    <option value="">Fan Dealers</option>
+                    <option value="">Audio Visual Equipment Dealers</option>
+                    <option value="">DVD Player Dealers</option>
+                    <option value="">Home Theatre Dealers</option>
+                  
+                </select>
+              </div>
+  
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="inputEmail4"
+                    placeholder="Password"
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">Confirm Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="inputPassword4"
+                    placeholder="Confirm Password"
+                  />
+                </div>
+              </div>
+  
+              <div class="mb-3">
+                <label for="validationTextarea">Textarea</label>
+                <textarea class="form-control " id="validationTextarea" placeholder="Required example textarea" required></textarea>
+                <div class="invalid-feedback">
+                  Please enter a message in the textarea.
+                </div>
+              </div>
+              
+  
+              <button type="submit" class="btn btn-primary my-2">Register</button>
+            </form>
+          </div>
+        </div>
+      </div>
 </body>
 
 </html>

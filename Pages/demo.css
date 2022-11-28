@@ -1,3 +1,6 @@
+
+
+
 @import url('https://fonts.googleapis.com/css?family=Abel');
 
 html, body {
@@ -5,10 +8,6 @@ html, body {
   font-family: Abel, Arial, Verdana, sans-serif;
 }
 
-.flexbox{
-    display: flex;
-    flex-wrap: wrap;
-}
 .center {
   position: absolute;
   top: 50%;
@@ -180,3 +179,4 @@ html, body {
   font-size: 0.9em;
 }
 
+ 
