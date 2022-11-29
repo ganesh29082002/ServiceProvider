@@ -274,10 +274,10 @@
     <br>
 
     <h3 class="" id="Heading">Fast, FREE way to get experts.</h3>  <br>
-    <div class="row">
-    <div class="col-md-7" >
+    <div class="row " >
+    <div class="col-md-5 " id="insearch">
 
-        <div class="input-group mb-3 " id="insearch">
+        <div class="input-group mb-3 sticky-section " >
           <div class="input-group-prepend ">
             <span class="input-group-text p-3 ">
              
@@ -643,6 +643,24 @@
           menu1.style.display = 'none';                    
       }
     }
+
+    </script>
+
+    <script>
+const navbar = document.querySelector('#insearch');
+// const navbar = document.getElementById('#insearch');
+
+
+let top = navbar.offsetTop;
+function stickynavbar() {
+  if (window.scrollY >= top) {    
+    navbar.classList.add('sticky-section');
+  } else {
+    navbar.classList.remove('sticky-section');    
+  }
+}
+window.addEventListener('scroll', stickynavbar);
+
 
     </script>
 

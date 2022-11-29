@@ -1,0 +1,11 @@
+body{
+    background-color: #fff9f9;
+  }
+
+.outercontainer{
+    margin-top: 10px;
+    background-color: #FFFFFF;
+    box-shadow: 0 7px 7px 7px rgba(220, 214, 214, 0.45);
+    margin-bottom: 20px;
+    border-radius: 17px;
+  }
