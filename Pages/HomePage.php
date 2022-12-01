@@ -39,7 +39,7 @@
 <body>
      <!-- NavBar  -->
      <section>
-     <nav class="navbar navbar-expand-lg bg-white p-1 fixed-top">
+     <nav class="navbar navbar-expand-lg bg-white p-1 ">
         <a class="navbar-brand" href="#">
             <img src="images/logo.jpg" alt="" class="img-fluid" /> ServiceProvider
         </a>
@@ -54,10 +54,14 @@
                 <a type="button" class="nav-item nav-link pr-md-3 sm-bold" href="serviceproviderdashboard.html">Register
                     As Service Provider</a>
             </div>
-            <div class="pr-md-5">
+            <div class="pr-md-3">
                 <button type="button" class="btn btn-primary p-1" data-toggle="modal" data-target="#Loginlogout">
                     SignIn/SignUp
                 </button>
+            </div>
+            <div class="pr-md-">
+            <i class="fa-solid fa-user-gear"> <p>  </p></i>
+            
             </div>
         </div>
     </nav>
@@ -89,7 +93,7 @@
               </ul>
               <div class="tab-content">
                 <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-                  <form action="<?php $_SERVER['PHP_SELF']; ?>" methos="POST" >
+                  <form action = "HomePagePhp.php" method = "post" >
                     <!-- Email input -->
                     <div class="form-outline mb-4">
                       <input type="email" id="loginName" name="username" class="form-control" />
@@ -105,11 +109,7 @@
                     <div class="row mb-4">
                       <div class="col-md-6 d-flex justify-content-center">
                         <!-- Checkbox -->
-                        <div class="form-check mb-3 mb-md-0">
-                          <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
-                          <label class="form-check-label" for="loginCheck"> Remember me </label>
-                        </div>
-                      </div>
+                        
   
                       <div class="col-md-6 d-flex justify-content-center">
                         <!-- Simple link -->
@@ -118,7 +118,7 @@
                     </div>
   
                     <!-- Submit button -->
-                    <button type="submit" name="login" class="btn btn-primary btn-block mb-4">Sign in</button>
+                    <input type="submit" name="login" class="btn btn-primary btn-block mb-4">Sign in</input>
   
                     <!-- Register buttons -->
                     <div class="text-center">

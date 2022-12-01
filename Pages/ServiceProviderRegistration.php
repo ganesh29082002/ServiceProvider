@@ -45,15 +45,16 @@
           >
   
           
-            <form class="w-100">
+            <form class="w-100" >
               <div class="form-row ">
                 <div class="form-group col-md-6">
                   <label for="inputEmail4">First Name</label>
                   <input
-                    type="email"
+                    type="email" 
                     class="form-control"
                     id="inputEmail4"
                     placeholder="First Name"
+                    name="fname"
                   />
                 </div>
                 <div class="form-group col-md-6">
@@ -63,36 +64,29 @@
                     class="form-control"
                     id="inputPassword4"
                     placeholder="Last Name"
+                    name="lname"
                   />
                 </div>
               </div>
   
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="inputEmail4">Age</label>
-                  <select id="inputState" class="form-control">
-                    <option selected disabled>Choose...</option>
-                    <option>20</option>
-                    <option>21</option>
-                    <option>22</option>
-                    <option>23</option>
-                    <option>24</option>
-                    <option>25</option>
-                    <option>26</option>
-                    <option>27</option>
-                    <option>28</option>
-                    <option>29</option>
-                    <option>30</option>
-                    <option>31</option>
-                  </select>
+                <label for="Gmail">Gmail</label>
+                  <input
+                    type="Gmail"
+                    class="form-control"
+                    id="Gmail"
+                    placeholder="Gmail"
+                    name="gmail"
+                  />  
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputState">Gender</label>
                   <select id="inputState" class="form-control">
                     <option selected disabled>Choose...</option>
-                    <option>Male</option>
-                    <option>Female</option>
-                    <option>Non-Binary</option>
+                    <option value="male" >Male</option>
+                    <option value="female" >Female</option>
+                    <option value="other" >Other</option>
                   </select>
                 </div>
               </div>
@@ -104,11 +98,12 @@
                   class="form-control"
                   id="inputAddress"
                   placeholder="1234 Main St"
+                  name="address"
                 />
               </div>
   
               <div class="form-group col">
-                <input type="file" class="custom-file-input" id="customFile" />
+                <input type="file" class="custom-file-input" value="adharfile" id="customFile" />
                 <label class="custom-file-label" for="customFile"
                   >Upload Addhar Card</label
                 >
@@ -117,11 +112,11 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputEmail4">Addhar Number</label>
-                  <input type="Nuber" class="form-control" id="inputEmail4" />
+                  <input type="Nuber" name="adharno" class="form-control" id="inputEmail4" />
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputPassword4">DOB</label>
-                  <input type="date" class="form-control" id="inputPassword4" />
+                  <input type="date" class="form-control" name="dbd" id="inputPassword4" />
                 </div>
               </div>
   
@@ -132,12 +127,12 @@
                 </div>
                 <select class="custom-select" id="inputGroupSelect03" aria-label="Example select with button addon">
                   <option value="" disabled selected>select...</option>
-                    <option value="">Home & Services</option>
-                    <option value="">Home Improvment</option>
-                    <option value="">Professional</option>
-                    <option value="">Health & Wellness</option>
-                    <option value="">Travel & Transport</option>
-                    <option value="">Events</option>
+                    <option value="Home & Services">Home & Services</option>
+                    <option value="Home Improvment">Home Improvment</option>
+                    <option value="Professional">Professional</option>
+                    <option value="Health & Wellness">Health & Wellness</option>
+                    <option value="Travel & Transport">Travel & Transport</option>
+                    <option value="Events">Events</option>
                 </select>
               </div>
   
