@@ -27,30 +27,56 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="ServiceProviderRegistration.css" />
-
+   <link rel="stylesheet" href="ServiceProviderRegistration.css">
     <style>
         button {
             box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.35);
             padding: 0%;
         }
+        body{
+    background-color: #fff9f9;
+  }
+
+.outercontainer{
+    margin-top: 10px;
+    background-color: #FFFFFF;
+    box-shadow: 0 7px 7px 7px rgba(220, 214, 214, 0.45);
+    margin-bottom: 20px;
+    border-radius: 17px;
+   
+   
+  }
+  .providerheading{
+    display: flex; 
+   height: 70px;
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+  
+  
+
     </style>
 </head>
 
 <body>
     <div class="container outercontainer ">
+      <div class="container-fluid providerheading bg-dark">
+        <h2 >Register As A Service Provider</h2>
+      </div>
         <div class="row ">
           <div
             class="h-100  d-flex align-items-center justify-content-center mt-5 w-100"
           >
   
           
-            <form class="w-100" >
+            <form class="w-100" action="ServiceProviderSaveData.php"  method = "post">
               <div class="form-row ">
                 <div class="form-group col-md-6">
                   <label for="inputEmail4">First Name</label>
                   <input
-                    type="email" 
+                    type="text" 
                     class="form-control"
                     id="inputEmail4"
                     placeholder="First Name"
@@ -60,7 +86,7 @@
                 <div class="form-group col-md-6">
                   <label for="inputPassword4">Last Name</label>
                   <input
-                    type="password"
+                    type="text"
                     class="form-control"
                     id="inputPassword4"
                     placeholder="Last Name"
@@ -82,7 +108,7 @@
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputState">Gender</label>
-                  <select id="inputState" class="form-control">
+                  <select id="inputState" name="gender" class="form-control">
                     <option selected disabled>Choose...</option>
                     <option value="male" >Male</option>
                     <option value="female" >Female</option>
@@ -90,6 +116,20 @@
                   </select>
                 </div>
               </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Company name</label>
+                  <input type="text" name="company" class="form-control" id="inputEmail4" />
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">Register Date</label>
+                  <input type="date" class="form-control" name="regdate" id="inputPassword4" />
+                  <small class=" text-info">Enter current date </small>
+                </div>
+              </div>
+              
+              
   
               <div class="form-group">
                 <label for="inputAddress">Address</label>
@@ -101,9 +141,20 @@
                   name="address"
                 />
               </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">city name</label>
+                  <input type="text" name="city" class="form-control" id="inputEmail4" />
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">state </label>
+                  <input type="text" class="form-control" name="state" id="inputPassword4" />
+                  
+                </div>
+              </div>
   
               <div class="form-group col">
-                <input type="file" class="custom-file-input" value="adharfile" id="customFile" />
+                <input type="file" name="uploadadhar" class="custom-file-input" value="adharfile" id="customFile" />
                 <label class="custom-file-label" for="customFile"
                   >Upload Addhar Card</label
                 >
@@ -112,7 +163,7 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputEmail4">Addhar Number</label>
-                  <input type="Nuber" name="adharno" class="form-control" id="inputEmail4" />
+                  <input type="Number" name="adharno" class="form-control" id="inputEmail4" />
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputPassword4">DOB</label>
@@ -125,14 +176,16 @@
                 <div class="input-group-prepend">
                   <button class="btn btn-outline-secondary" type="button">Choose Category</button>
                 </div>
-                <select class="custom-select" id="inputGroupSelect03" aria-label="Example select with button addon">
+                <select class="custom-select" name="selectCategory" id="inputGroupSelect03" aria-label="Example select with button addon">
                   <option value="" disabled selected>select...</option>
-                    <option value="Home & Services">Home & Services</option>
-                    <option value="Home Improvment">Home Improvment</option>
-                    <option value="Professional">Professional</option>
-                    <option value="Health & Wellness">Health & Wellness</option>
-                    <option value="Travel & Transport">Travel & Transport</option>
-                    <option value="Events">Events</option>
+                  <?php
+                 $conn= mysqli_connect("localhost","root","","miniproject") or die("connection feild");
+                 $sql = "SELECT * FROM  category ";
+                $result = mysqli_query($conn,$sql) or die("query unsuccessful");
+                 while($row = mysqli_fetch_assoc($result)){
+                ?>
+                <option value="<?php echo $row['category']  ?>"><?php echo $row['category']  ?></option>
+                <?php } ?>
                 </select>
               </div>
   
@@ -140,16 +193,16 @@
                 <div class="input-group-prepend">
                   <button class="btn btn-outline-secondary" type="button">Choose Service</button>
                 </div>
-                <select class="custom-select" id="inputGroupSelect03" aria-label="Example select with button addon">
+                <select class="custom-select" name="selectService" id="inputGroupSelect03" aria-label="Example select with button addon">
                 
                     <option value="" disabled selected>select...</option>
-                    <option value="">Air Cooler Dealers</option>
-                    <option value="">Air Purifier Dealers</option>
-                    <option value="">Exhaust Fan Dealers</option>
-                    <option value="">Fan Dealers</option>
-                    <option value="">Audio Visual Equipment Dealers</option>
-                    <option value="">DVD Player Dealers</option>
-                    <option value="">Home Theatre Dealers</option>
+                    <option value="Air Cooler Dealers">Air Cooler Dealers</option>
+                    <option value="Air Purifier Dealers">Air Purifier Dealers</option>
+                    <option value="Exhaust Fan Dealers">Exhaust Fan Dealers</option>
+                    <option value="Fan Dealers">Fan Dealers</option>
+                    <option value="Audio Visual Equipment Dealers">Audio Visual Equipment Dealers</option>
+                    <option value="DVD Player Dealers">DVD Player Dealers</option>
+                    <option value="Home Theatre Dealers">Home Theatre Dealers</option>
                   
                 </select>
               </div>
@@ -162,6 +215,7 @@
                     class="form-control"
                     id="inputEmail4"
                     placeholder="Password"
+                    name="password"
                   />
                 </div>
                 <div class="form-group col-md-6">
@@ -171,13 +225,14 @@
                     class="form-control"
                     id="inputPassword4"
                     placeholder="Confirm Password"
+                    name="cpassword"
                   />
                 </div>
               </div>
   
               <div class="mb-3">
                 <label for="validationTextarea">Textarea</label>
-                <textarea class="form-control " id="validationTextarea" placeholder="Required example textarea" required></textarea>
+                <textarea class="form-control " name="message"  id="validationTextarea" placeholder="Required example textarea" required></textarea>
                 <div class="invalid-feedback">
                   Please enter a message in the textarea.
                 </div>

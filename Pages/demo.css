@@ -7,6 +7,13 @@ html, body {
   background: #FCEEB5;
   font-family: Abel, Arial, Verdana, sans-serif;
 }
+.search{
+ width: 170px;
+}
+.flexbox{
+ display: flex;
+ justify-content: center;
+}
 
 .center {
   position: absolute;

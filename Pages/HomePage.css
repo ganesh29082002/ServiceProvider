@@ -11,7 +11,7 @@ body{
   .sticky-section{
     overflow:hidden;
    
-    margin-bottom:50px;
+    /* margin-bottom:50px; */
     
     
     /* position:-webkit-sticky; */
@@ -40,7 +40,7 @@ nav {
    background-image: url('../Images/background.jpg');
    background-size: cover;
    height: 400px;
-   margin-top: 28px;
+   /* margin-top: 28px; */
    
   }
   #Heading{
@@ -76,11 +76,19 @@ select {
   .FloatBoxMain{
     position: relative;
     top: -65px;
+
+  }
+  #box-service{
+    box-shadow: 0 7px 7px 0 rgba(0,0,0,.35); 
+    background-color: white;
+
   }
 
   .FloatBOX{
     display: flex;
     justify-content:center;
+    background-color: white;
+
     /* justify-items: center; */
   }
   .FloatBOX1{
