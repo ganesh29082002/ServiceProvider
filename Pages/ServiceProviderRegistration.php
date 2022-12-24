@@ -170,12 +170,12 @@
                   <input type="date" class="form-control" name="dbd" id="inputPassword4" />
                 </div>
               </div>
-  
-  
+       
+              
               <div class="input-group mb-3">
-                <div class="input-group-prepend">
+                <!-- <div class="input-group-prepend">
                   <button class="btn btn-outline-secondary" type="button">Choose Category</button>
-                </div>
+                </div> -->
                 <select class="custom-select" name="selectCategory" id="inputGroupSelect03" aria-label="Example select with button addon">
                   <option value="" disabled selected>select...</option>
                   <?php
@@ -188,25 +188,28 @@
                 <?php } ?>
                 </select>
               </div>
+              
+              
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+  <button class="btn btn-outline-secondary" type="button">Choose Service</button>
+</div>
+<select class="custom-select" name="selectService" id="inputGroupSelect03" aria-label="Example select with button addon">
+
+    <option value="" disabled selected>select...</option>
+    <option value="" disabled selected>AC Repaire</option>
+    <option value="" disabled selected>select...</option>
+    <option value="" disabled selected>select...</option>
+    <option value="" disabled selected>select...</option>
+
+    
+ 
   
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <button class="btn btn-outline-secondary" type="button">Choose Service</button>
-                </div>
-                <select class="custom-select" name="selectService" id="inputGroupSelect03" aria-label="Example select with button addon">
-                
-                    <option value="" disabled selected>select...</option>
-                    <option value="Air Cooler Dealers">Air Cooler Dealers</option>
-                    <option value="Air Purifier Dealers">Air Purifier Dealers</option>
-                    <option value="Exhaust Fan Dealers">Exhaust Fan Dealers</option>
-                    <option value="Fan Dealers">Fan Dealers</option>
-                    <option value="Audio Visual Equipment Dealers">Audio Visual Equipment Dealers</option>
-                    <option value="DVD Player Dealers">DVD Player Dealers</option>
-                    <option value="Home Theatre Dealers">Home Theatre Dealers</option>
-                  
-                </select>
-              </div>
-  
+</select>
+
+</div>   
+              
+              
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputEmail4">Password</label>

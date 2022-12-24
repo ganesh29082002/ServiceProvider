@@ -9,9 +9,21 @@ if (!isset($_SESSION['UID'])) {
 <?php
 }
 
-$Name = $_SESSION['UNAME'];
+
 
 ?>
+<?php
+
+use LDAP\Result;
+
+include "config.php";
+
+$sql = "select * from serviceprovider ";
+
+$result = mysqli_query($db,$sql) or die ("connection failed in card")  ;
+
+?>
+
 
 
 <!DOCTYPE html>
@@ -36,6 +48,7 @@ $Name = $_SESSION['UNAME'];
   <!-- MDB -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="HomePage.css">
+  <script src="https://kit.fontawesome.com/d594306424.js" crossorigin="anonymous"></script>
   <style>
     button {
       box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.35);
@@ -45,6 +58,7 @@ $Name = $_SESSION['UNAME'];
 </head>
 
 <body>
+
   <!-- NavBar  -->
   <section>
 
@@ -53,20 +67,23 @@ $Name = $_SESSION['UNAME'];
     ?>
       <nav class="navbar navbar-expand-lg bg-white p-1 ">
         <a class="navbar-brand" href="#">
-          <img src="images/logo.jpg" alt="" class="img-fluid" /> ServiceProvider
+          <img src="../Images/logo.jpg" alt="" class="img-fluid" /> ServiceProvider
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"> </span>
         </button>
         <div class="collapse navbar-collapse p-0" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto pr-md-3 p-0 mb-0">
-            <a class="nav-item nav-link pr-md-3 sm-bolder" href="aboutus.html">About
+          
+             <!-- <a  onclick="searchIcon()" ><i class="fa-solid fa-magnifying-glass"></i> </a>
+             <a id="searchIcon" class=""><input type="text">search</a> -->
+          
+            <a class="nav-item nav-link pr-md-3 sm-bolder" href="aboutus.php">About
             </a>
             <a type="button" class="nav-item nav-link pr-md-3 sm-bold" href="ServiceProviderRegistration.php">Register
               As Service Provider</a>
 
-            <span type="button" class="nav-item nav-link  sm-bold"> <i class="fa-solid fa-user-gear"> </i> <?php echo $Name ?> </span>
-
+           
           </div>
 
           <button type="button" class="btn btn-primary p-1" data-toggle="modal" data-target="#Loginlogout">
@@ -79,25 +96,30 @@ $Name = $_SESSION['UNAME'];
         </div>
       </nav>
 
-    <?php } else { ?>
+    <?php } else { 
+      
+  $UName = $_SESSION['UNAME'];
+  $Uemail = $_SESSION['EMAIL'];
+
+
+  ?>
 
       <!-- for PHP Navebar -->
 
       <nav class="navbar navbar-expand-lg bg-white p-1 ">
         <a class="navbar-brand" href="#">
-          <img src="images/logo.jpg" alt="" class="img-fluid" /> ServiceProvider
+          <img src="../Images/logo.jpg" alt="" class="img-fluid" /> ServiceProvider
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse p-0" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto pr-md-3 p-0 mb-0">
-            <a class="nav-item nav-link pr-md-3 sm-bolder" href="aboutus.html">About
+            <a class="nav-item nav-link pr-md-3 sm-bolder" href="aboutus.php">About
             </a>
-            <a type="button" class="nav-item nav-link pr-md-3 sm-bold" href="ServiceProviderRegistration.php">Register
-              As Service Provider</a>
+           
 
-            <span type="button" class="nav-item nav-link  sm-bold"> <i class="fa-solid fa-user-gear"> </i> <?php echo $Name ?> </span>
+            <span type="button" class="nav-item nav-link  sm-bold"> <a href="logout.php"> <i class="fa-solid fa-user-gear"> </i> <?php echo $UName ?> </a> </span>
 
           </div>
 
@@ -136,7 +158,8 @@ $Name = $_SESSION['UNAME'];
             </ul>
             <div class="tab-content">
               <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-                <form action="HomePagePhp.php" method="post">
+               <!--Login  -->
+              <form action="HomePagePhp.php" method="post">
                   <!-- Email input -->
                   <div class="form-outline mb-4">
                     <input type="email" id="loginName" name="username" class="form-control" />
@@ -154,14 +177,11 @@ $Name = $_SESSION['UNAME'];
                       <!-- Checkbox -->
 
 
-                      <div class="col-md-6 d-flex justify-content-center">
-                        <!-- Simple link -->
-                        <a href="#!">Forgot password?</a>
-                      </div>
+                     
                     </div>
 
                    
-                    <div class="form-group col-md-6">
+                    <div class="form-grod:\App\resources\app\out\vs\code\electron-sandbox\workbench\workbench.htmlup col-md-6">
                   <label for="inputState">ROLE</label>
                   <select id="inputState" name="role" class="form-control">
                     <option selected disabled>Choose...</option>
@@ -328,34 +348,7 @@ $Name = $_SESSION['UNAME'];
       <br>
 
       <h3 class="" id="Heading">Fast, FREE way to get experts.</h3> <br>
-      <div class="row ">
-        <div class="col-md-5 " id="insearch">
-
-          <div class="input-group mb-3 sticky-section ">
-            <div class="input-group-prepend ">
-              <span class="input-group-text p-3 ">
-
-                <select>
-                  <option value=""> Location
-                  </option>
-                  <option value="nagpur"> nagpur
-                  </option>
-                  <option value="wardha"> wardha
-                  </option>
-                  <option value="pune"> pune
-                  </option>
-                  <option value="mumbai"> mumbai
-                  </option>
-                </select>
-              </span>
-            </div>
-            <input type="text" id="" class="form-control " placeholder="Type services">
-            <div class="input-group-append ">
-              <span id="input-group-append" type="button" class="input-group-text bg-success p-3"> Search </span>
-            </div>
-          </div>
-        </div>
-      </div>
+      
     </div>
 
   </section>
@@ -366,7 +359,7 @@ $Name = $_SESSION['UNAME'];
 
     <div class="container FloatBoxMain">
       <div class="row ">
-        <div id="box-service" class=" container col-md-8 p-1 py-4 bg-white  ">
+        <div id="box-service" class=" container col-md-8 p-1 py-4   ">
           <div class="row FloatBOX">
             <div class="boximg col-6 col-sm-2 FloatBOX1 " onClick="show_Home()">
               <img class="img-fluid" src="../Images/HomeService.jpg" alt="">
@@ -376,53 +369,41 @@ $Name = $_SESSION['UNAME'];
             </div>
 
             <div class="boximg col-6 col-sm-2  " onClick="show_HomeImprovement()">
-              <img class="img-fluid" src="../Images/HomeService.jpg" alt="">
+              <img class="img-fluid" src="../Images/HomeRpaire.jpg" alt="">
               <span>
-                <center> Home & Services </center>
+                <center> Home Repair </center>
+              </span>
+            </div>
+
+            <div class="boximg col-6 col-sm-2" onclick="show_Professionalservices()">
+              <img class="img-fluid" src="../Images/Professional.jpg" alt="">
+              <span>
+                <center> Professional services </center>
+              </span>
+            </div>
+
+            <div class="boximg col-6 col-sm-2" onclick="show_Transport()">
+              <img class="img-fluid" src="../Images/Transport.jpg" alt="">
+              <span>
+                <center> Transport </center>
+              </span>
+            </div>
+
+            <div class="boximg col-6 col-sm-2" onclick="show_HealthServices()">
+              <img class="img-fluid" src="../Images/Health.jpg" alt="">
+              <span>
+                <center> Health Services </center>
               </span>
             </div>
 
             <div class="boximg col-6 col-sm-2">
-              <img class="img-fluid" src="../Images/HomeService.jpg" alt="">
+              <img class="img-fluid" src="../Images/event.jpg" alt="">
               <span>
-                <center> Home & Services </center>
+                <center> Events </center>
               </span>
             </div>
 
-            <div class="boximg col-6 col-sm-2">
-              <img class="img-fluid" src="../Images/HomeService.jpg" alt="">
-              <span>
-                <center> Home & Services </center>
-              </span>
-            </div>
-
-            <div class="boximg col-6 col-sm-2">
-              <img class="img-fluid" src="../Images/HomeService.jpg" alt="">
-              <span>
-                <center> Home & Services </center>
-              </span>
-            </div>
-
-            <div class="boximg col-6 col-sm-2">
-              <img class="img-fluid" src="../Images/HomeService.jpg" alt="">
-              <span>
-                <center> Home & Services </center>
-              </span>
-            </div>
-
-            <div class="boximg col-6 col-sm-2">
-              <img class="img-fluid" src="../Images/HomeService.jpg" alt="">
-              <span>
-                <center> Home & Services </center>
-              </span>
-            </div>
-
-            <div class="boximg col-6 col-sm-2">
-              <img class="img-fluid" src="../Images/HomeService.jpg" alt="">
-              <span>
-                <center> Home & Services </center>
-              </span>
-            </div>
+            
 
 
 
@@ -434,7 +415,7 @@ $Name = $_SESSION['UNAME'];
 
   <!-- HIDING MENU SECTION -->
 
-  <section class="hidemenu container ">
+  <section class="hidemenu container " id="hidemenu">
 
     <!-- dropdown_Home -->
 
@@ -444,49 +425,49 @@ $Name = $_SESSION['UNAME'];
       <button type="button" class="btn-close btn-danger" onClick="close_menu()" aria-label="Close"></button>
       <div class="row col-data">
         <div class="col-lg-4">
+       
           <ul class="my-3 ">
-            <li> <a href="dumy.html"> AC Dealers </li></a> <br>
-            <li><a href="dumy.html"> Air Cooler Dealers</li></a> <br>
-            <li><a href="dumy.html"> Air Purifier Dealers</li></a> <br>
-            <li><a href="dumy.html"> Exhaust Fan Dealers</li></a> <br>
-            <li><a href="dumy.html"> Fan Dealers</li></a> <br>
-            <li><a href="dumy.html"> Audio Visual Equipment Dealers</li></a> <br>
-            <li><a href="dumy.html">DVD Player Dealers</li></a> <br>
+          <?php $conn= mysqli_connect("localhost","root","","miniproject") or die("connection feild");
+                 $sqlsubcategory = "SELECT sname FROM  subcategory  where cid=1 LIMIT 5 ;";
+                $resultsubcategory = mysqli_query($conn,$sqlsubcategory) or die("query unsuccessful");
+                 while($row = mysqli_fetch_assoc($resultsubcategory) ){
+                  ?>  
+            <li> <a href="demo.php"> <?php echo $row['sname'] ?></a> </li> <br>
+            
 
-            <li><a href="dumy.html"> Home Theatre Dealers</li></a> <br>
-
-
+            <?php }?>
 
           </ul>
+         
         </div>
 
         <div class="col-lg-4">
           <ul class="my-3 ">
-            <li> <a href="dumy.html"> AC Dealers</li></a> <br>
-            <li><a href="dumy.html"> Air Cooler Dealers</li></a> <br>
-            <li><a href="dumy.html"> Air Purifier Dealers</li></a> <br>
-            <li><a href="dumy.html"> Exhaust Fan Dealers</li></a> <br>
-            <li><a href="dumy.html"> Fan Dealers</li></a> <br>
-            <li><a href="dumy.html"> Audio Visual Equipment Dealers</li></a> <br>
-            <li><a href="dumy.html">DVD Player Dealers</li></a> <br>
+          <?php $conn= mysqli_connect("localhost","root","","miniproject") or die("connection feild");
+                 $sqlsubcategory = "SELECT sname FROM  subcategory  where cid=1 LIMIT 5 ;";
+                $resultsubcategory = mysqli_query($conn,$sqlsubcategory) or die("query unsuccessful");
+                 while($row = mysqli_fetch_assoc($resultsubcategory) ){
+                  ?>  
+            <li> <a href="demo.php"> <?php echo $row['sname'] ?></a> </li> <br>
+            
 
-            <li><a href="dumy.html"> Home Theatre Dealers</li></a> <br>
-
+            <?php }?>
 
 
           </ul>
         </div>
         <div class="col-lg-4">
           <ul class="my-3 ">
-            <li> <a href="dumy.html"> AC Dealers</li></a> <br>
-            <li><a href="dumy.html"> Air Cooler Dealers</li></a> <br>
-            <li><a href="dumy.html"> Air Purifier Dealers</li></a> <br>
-            <li><a href="dumy.html"> Exhaust Fan Dealers</li></a> <br>
-            <li><a href="dumy.html"> Fan Dealers</li></a> <br>
-            <li><a href="dumy.html"> Audio Visual Equipment Dealers</li></a> <br>
-            <li><a href="dumy.html">DVD Player Dealers</li></a> <br>
+          <?php $conn= mysqli_connect("localhost","root","","miniproject") or die("connection feild");
+                 $sqlsubcategory = "SELECT sname FROM  subcategory  where cid=1 LIMIT 5 ;";
+                $resultsubcategory = mysqli_query($conn,$sqlsubcategory) or die("query unsuccessful");
+                 while($row = mysqli_fetch_assoc($resultsubcategory) ){
+                  ?>  
+            <li> <a href="demo.php"> <?php echo $row['sname'] ?></a> </li> <br>
+            
 
-            <li><a href="dumy.html"> Home Theatre Dealers</li></a> <br>
+            <?php }?>
+
           </ul>
         </div>
 
@@ -502,16 +483,13 @@ $Name = $_SESSION['UNAME'];
       <div class="row col-data">
         <div class="col-lg-4">
           <ul class="my-3 ">
-            <li> <a href="dumy.html"> AC Dealers </li></a> <br>
-            <li><a href="dumy.html"> Air Cooler Dealers</li></a> <br>
-            <li><a href="dumy.html"> Air Purifier Dealers</li></a> <br>
-            <li><a href="dumy.html"> Exhaust Fan Dealers</li></a> <br>
-            <li><a href="dumy.html"> Fan Dealers</li></a> <br>
-            <li><a href="dumy.html"> Audio Visual Equipment Dealers</li></a> <br>
-            <li><a href="dumy.html">DVD Player Dealers</li></a> <br>
-
-            <li><a href="dumy.html"> Home Theatre Dealers</li></a> <br>
-
+            <li> <a href="demo.php"> Interior Designers </li></a> <br>
+            <li><a href="demo.php">Modular Kitchen Dealers</li></a> <br>
+            <li><a href="demo.php">Painting Contractors</li></a> <br>
+            <li><a href="demo.php">Waterproofing contractors</li></a> <br>
+            <li><a href="demo.php"> Architects</li></a> <br>
+            <li><a href="demo.php"> Furnitures Dealers</li></a> <br>
+            <li><a href="demo.php">Solar Plate Dealers</li></a> <br>
 
 
           </ul>
@@ -519,48 +497,253 @@ $Name = $_SESSION['UNAME'];
 
         <div class="col-lg-4">
           <ul class="my-3 ">
-            <li> <a href="dumy.html"> AC Dealers</li></a> <br>
-            <li><a href="dumy.html"> Air Cooler Dealers</li></a> <br>
-            <li><a href="dumy.html"> Air Purifier Dealers</li></a> <br>
-            <li><a href="dumy.html"> Exhaust Fan Dealers</li></a> <br>
-            <li><a href="dumy.html"> Fan Dealers</li></a> <br>
-            <li><a href="dumy.html"> Audio Visual Equipment Dealers</li></a> <br>
-            <li><a href="dumy.html">DVD Player Dealers</li></a> <br>
-
-            <li><a href="dumy.html"> Home Theatre Dealers</li></a> <br>
-
+            <li> <a href="demo.php"> Interior Designers </li></a> <br>
+            <li><a href="demo.php">Modular Kitchen Dealers</li></a> <br>
+            <li><a href="demo.php">Painting Contractors</li></a> <br>
+            <li><a href="demo.php">Waterproofing contractors</li></a> <br>
+            <li><a href="demo.php"> Architects</li></a> <br>
+            <li><a href="demo.php"> Furnitures Dealers</li></a> <br>
+            <li><a href="demo.php">Solar Plate Dealers</li></a> <br>
 
 
           </ul>
         </div>
+
         <div class="col-lg-4">
           <ul class="my-3 ">
-            <li> <a href="dumy.html"> AC Dealers</li></a> <br>
-            <li><a href="dumy.html"> Air Cooler Dealers</li></a> <br>
-            <li><a href="dumy.html"> Air Purifier Dealers</li></a> <br>
-            <li><a href="dumy.html"> Exhaust Fan Dealers</li></a> <br>
-            <li><a href="dumy.html"> Fan Dealers</li></a> <br>
-            <li><a href="dumy.html"> Audio Visual Equipment Dealers</li></a> <br>
-            <li><a href="dumy.html">DVD Player Dealers</li></a> <br>
+            <li> <a href="demo.php"> Interior Designers </li></a> <br>
+            <li><a href="demo.php">Modular Kitchen Dealers</li></a> <br>
+            <li><a href="demo.php">Painting Contractors</li></a> <br>
+            <li><a href="demo.php">Waterproofing contractors</li></a> <br>
+            <li><a href="demo.php"> Architects</li></a> <br>
+            <li><a href="demo.php"> Furnitures Dealers</li></a> <br>
+            <li><a href="demo.php">Solar Plate Dealers</li></a> <br>
 
-            <li><a href="dumy.html"> Home Theatre Dealers</li></a> <br>
+
           </ul>
         </div>
+
 
       </div>
     </div>
 
+     <!-- dropdown_Professionalservices-->
+
+     <div class="dropdown_Professionalservices" id="dropdown_Professionalservices" style="display:none ;">
+
+
+<button type="button" class="btn-close btn-danger" onClick="close_menu()" aria-label="Close"></button>
+<div class="row col-data">
+  <div class="col-lg-4">
+    <ul class="my-3 ">
+      <li> <a href="demo.php">Civil Lawyers </li></a> <br>
+      <li><a href="demo.php"> Property Lawyers</li></a> <br>
+      <li><a href="demo.php"> CA Services</li></a> <br>
+      <li><a href="demo.php"> GST Consultants</li></a> <br>
+      <li><a href="demo.php"> Home insurance</li></a> <br>
+      <li><a href="demo.php">Accident insurance</li></a> <br>
+      <li><a href="demo.php">Business Loan</li></a> <br>
+
+
+    </ul>
+  </div>
+
+  <div class="col-lg-4">
+    <ul class="my-3 ">
+      <li> <a href="demo.php">Civil Lawyers </li></a> <br>
+      <li><a href="demo.php"> Property Lawyers</li></a> <br>
+      <li><a href="demo.php"> CA Services</li></a> <br>
+      <li><a href="demo.php"> GST Consultants</li></a> <br>
+      <li><a href="demo.php"> Home insurance</li></a> <br>
+      <li><a href="demo.php">Accident insurance</li></a> <br>
+      <li><a href="demo.php">Business Loan</li></a> <br>
+
+
+    </ul>
+  </div>
+  <div class="col-lg-4">
+    <ul class="my-3 ">
+      <li> <a href="demo.php">Civil Lawyers </li></a> <br>
+      <li><a href="demo.php"> Property Lawyers</li></a> <br>
+      <li><a href="demo.php"> CA Services</li></a> <br>
+      <li><a href="demo.php"> GST Consultants</li></a> <br>
+      <li><a href="demo.php"> Home insurance</li></a> <br>
+      <li><a href="demo.php">Accident insurance</li></a> <br>
+      <li><a href="demo.php">Business Loan</li></a> <br>
+
+
+    </ul>
+  </div>
+
+</div>
+</div>
+
+<div class="dropdown_Transport" id="dropdown_Transport" style="display:none ;">
+
+
+<button type="button" class="btn-close btn-danger" onClick="close_menu()" aria-label="Close"></button>
+<div class="row col-data">
+  <div class="col-lg-4">
+    <ul class="my-3 ">
+      <li> <a href="demo.php">BUS Travel Agents </li></a> <br>
+      <li><a href="demo.php"> Train Travel Agent</li></a> <br>
+      <li><a href="demo.php"> Domestic Tour Packages</li></a> <br>
+      <li><a href="demo.php"> Car Rentals</li></a> <br>
+      <li><a href="demo.php"> Bus Rentals</li></a> <br>
+      <li><a href="demo.php">Petroleum Transporters</li></a> <br>
+      <li><a href="demo.php">International Sea Cargo</li></a> <br>
+
+
+    </ul>
+  </div>
+
+  <div class="col-lg-4">
+    <ul class="my-3 ">
+      <li> <a href="demo.php">BUS Travel Agents </li></a> <br>
+      <li><a href="demo.php"> Train Travel Agent</li></a> <br>
+      <li><a href="demo.php"> Domestic Tour Packages</li></a> <br>
+      <li><a href="demo.php"> Car Rentals</li></a> <br>
+      <li><a href="demo.php"> Bus Rentals</li></a> <br>
+      <li><a href="demo.php">Petroleum Transporters</li></a> <br>
+      <li><a href="demo.php">International Sea Cargo</li></a> <br>
+
+
+    </ul>
+  </div>
+
+  <div class="col-lg-4">
+    <ul class="my-3 ">
+      <li> <a href="demo.php">BUS Travel Agents </li></a> <br>
+      <li><a href="demo.php"> Train Travel Agent</li></a> <br>
+      <li><a href="demo.php"> Domestic Tour Packages</li></a> <br>
+      <li><a href="demo.php"> Car Rentals</li></a> <br>
+      <li><a href="demo.php"> Bus Rentals</li></a> <br>
+      <li><a href="demo.php">Petroleum Transporters</li></a> <br>
+      <li><a href="demo.php">International Sea Cargo</li></a> <br>
+
+
+    </ul>
+  </div>
+  </div>
+</div>
+
+<div class="dropdown_HealthServices" id="dropdown_HealthServices" style="display:none ;">
+
+
+<button type="button" class="btn-close btn-danger" onClick="close_menu()" aria-label="Close"></button>
+<div class="row col-data">
+  <div class="col-lg-4">
+    <ul class="my-3 ">
+      <li> <a href="demo.php">Birth Centers </li></a> <br>
+      <li><a href="demo.php"> Cancer Hospitals</li></a> <br>
+      <li><a href="demo.php"> Ambulance Services</li></a> <br>
+      <li><a href="demo.php"> Oxygen Cocentrators</li></a> <br>
+      <li><a href="demo.php"> Blood Banks</li></a> <br>
+      <li><a href="demo.php">Neurology Hospitals</li></a> <br>
+      <li><a href="demo.php">Pathalogists</li></a> <br>
+
+
+    </ul>
+  </div>
+
+  <div class="col-lg-4">
+    <ul class="my-3 ">
+      <li> <a href="demo.php">Birth Centers </li></a> <br>
+      <li><a href="demo.php"> Cancer Hospitals</li></a> <br>
+      <li><a href="demo.php"> Ambulance Services</li></a> <br>
+      <li><a href="demo.php"> Oxygen Cocentrators</li></a> <br>
+      <li><a href="demo.php"> Blood Banks</li></a> <br>
+      <li><a href="demo.php">Neurology Hospitals</li></a> <br>
+      <li><a href="demo.php">Pathalogists</li></a> <br>
+
+
+    </ul>
+  </div>
+
+  <div class="col-lg-4">
+    <ul class="my-3 ">
+      <li> <a href="demo.php">Birth Centers </li></a> <br>
+      <li><a href="demo.php"> Cancer Hospitals</li></a> <br>
+      <li><a href="demo.php"> Ambulance Services</li></a> <br>
+      <li><a href="demo.php"> Oxygen Cocentrators</li></a> <br>
+      <li><a href="demo.php"> Blood Banks</li></a> <br>
+      <li><a href="demo.php">Neurology Hospitals</li></a> <br>
+      <li><a href="demo.php">Pathalogists</li></a> 
+
+
+    </ul>
+  </div>
+  </div>
+  </div>
+
   </section>
+   <!-- <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+    <input type="text" name="searchbar" placeholder="search services" >
+    <input type="submit" name="search" value="search" > -->
 
-  <!-- Footer -->
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
+    
 
+
+
+  
+ 
+  <section>
+  
+  <div class="container ">
+<div class="page-info"><ul><li><strong>30+ M <br></strong>Happy Users</li> <li><strong>200+ K <br></strong>Verified Experts</li><li><strong>200+ <br></strong>Categories</li></ul></div>
+
+    <hr class="bg-secondary">
+<div class="row">
+ <?php 
+ while($row= mysqli_fetch_assoc($result))
+ {
+
+ ?>
+   
+   <div class="col-md-6">
+   <!-- <Form action="./PAYMENT/pay.php" method="$_POST"> -->
+   <div class="card m-3 border-0 shadow " style="max-width: 520px;">
+     <div class="row g-0 p-3 aling-item-center m-0">
+       <div class="col-md-5">
+         <img src="../Images/dhiraj.jpg" class="card-img" alt="...">
+       </div>
+       <div class="col-md-7 pl-0">
+
+
+         <div class="card-body d-flex flex-column m-0">
+           <h5 class="card-title"> <i class="fa-solid fa-user mx-2"></i> <?php echo $row['faname'], $row['lname'];; ?> </h5>
+           <p class="card-title pl-0 text-left "> <i class="fa-solid fa-chalkboard-user mx-2"></i><strong> Service : </strong> <?php echo $row['sservice']; ?> </p>
+           <p class="card-title " name="price"> <i class="fa-solid fa-sack-dollar mx-2"></i> <strong> Charge :</strong> <?php echo $row['charge']; ?> <i class="fa-solid fa-indian-rupee-sign"></i> /Hour</p>
+           <p class="card-title "> <i class="fa-solid fa-star mx-2"></i> <strong> Rating: </strong> <?php echo"4" ?></p>
+           <p class="card-title "> <i class="fa-solid fa-business-time mx-2"></i> <strong> Exprience </strong></p>
+          
+           <!-- <button type="submit" class="btn btn-primary" name="appoint">Appoint</button> -->
+
+           <a href="PAYMENT/pay.php?serviceId=<?php echo$row['sid'] ?>" class="btn btn-primary">Appoint</a>
+          
+
+
+           <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+         </div>
+       </div>
+     </div>
+   </div>
+   </Form>
+   <!-- if(isset($_POST["Submit1"])) -->
+
+ <!-- </form> -->
+ </div>
+ 
+ <?php 
+ }
+ ?>
+ </div>
+ </div>
+
+
+ </section>
+
+<!-- Footer -->
   <section>
     <footer class="text-center text-lg-start bg-dark ">
       <!-- Section: Social media -->
@@ -705,6 +888,10 @@ $Name = $_SESSION['UNAME'];
       }
     }
 
+    function appoint(){
+      alert("Service appoint successfully")
+    }
+
     function show_HomeImprovement() {
       var menu1 = document.getElementById('dropdown_Improvement');
 
@@ -714,6 +901,67 @@ $Name = $_SESSION['UNAME'];
         menu1.style.display = 'none';
       }
     }
+   
+    function show_Professionalservices() {
+      var menu1 = document.getElementById('dropdown_Professionalservices');
+
+      if (menu1.style.display == 'none') {
+        menu1.style.display = 'block';
+      } else {
+        menu1.style.display = 'none';
+      }
+    }
+
+    function show_Transport() {
+      var menu1 = document.getElementById('dropdown_Transport');
+
+      if (menu1.style.display == 'none') {
+        menu1.style.display = 'block';
+      } else {
+        menu1.style.display = 'none';
+      }
+    }
+    function show_HealthServices() {
+      var menu1 = document.getElementById('dropdown_HealthServices');
+
+      if (menu1.style.display == 'none') {
+        menu1.style.display = 'block';
+      } else {
+        menu1.style.display = 'none';
+      }
+    }
+
+   
+
+    function searchIcon(){
+      var menuu = document.getElementById('searchIcon');
+      if (menuu.style.display == 'none') {
+        menuu.style.width = '50px';
+        menuu.style.display = 'block';
+
+      } else {
+        menuu.style.display = 'none';
+      }
+    }
+
+    // function close_menu() {
+    //   var menu1 = document.getElementById('hidemenu');
+
+    //   if (menu1.style.display == 'block') {
+    //     menu1.style.display = 'none';
+    //   } else {
+    //     menu1.style.display = 'block';
+    //    }
+    // }
+    // function show_HomeImprovement() {
+    //   var menu1 = document.getElementById('dropdown_Improvement');
+
+    //   if (menu1.style.display == 'none') {
+    //     menu1.style.display = 'block';
+    //   } else {
+    //     menu1.style.display = 'none';
+    //   }
+    // }
   </script>
 
   <script>

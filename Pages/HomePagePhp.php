@@ -3,6 +3,8 @@
 
 
    include("config.php");
+
+ 
    if(isset($_POST['register'])) {
 
    $NAME = $_POST['Name'];
@@ -36,61 +38,74 @@
       
       $myusername = mysqli_real_escape_string($db,$_POST['username']);
       $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
-      $ROLE = mysqli_real_escape_string($db,$_POST['role']);
+      $ROLE = $_POST['role'];
       
-      if($ROLE="User") {
+      if($ROLE=="User") {
       $sql = "SELECT * FROM user WHERE Email = '{$myusername}' and Passworduser = '{$mypassword}'";
       $res = mysqli_query($db,$sql) or die("result failed");
       if(mysqli_num_rows($res) >0)
       {
-         $row=mysqli_fetch_assoc($res);
+        $row=mysqli_fetch_assoc($res);
          echo "<SCRIPT> alert('You are logIn as User')  </SCRIPT> ";  
 		$_SESSION['UID']=$row['Uid'];
 		$_SESSION['UNAME']=$row['Name'];
+		$_SESSION['EMAIL']=$row['Email'];
+
 
 
          header("Location: http://localhost/MiniProject%20V.1/Pages/HomePage.php");
       }
       else {
          $error = "Your Login Name or Password is invalid";
+         echo'<script>
+         alert("$error");
+         </script>';
+         header("Location: http://localhost/MiniProject%20V.1/Pages/HomePage.php");
+
       }
 
    } 
-   elseif($ROLE="ServiceProvider") {
-      $sql = "SELECT * FROM serviceprovider WHERE gmail = '{$myusername}' and Password = '{$mypassword}'";
+   if($ROLE=="ServiceProvider") {
+      $sql = "SELECT * FROM serviceprovider WHERE gmail = '{$myusername}' AND password = '{$mypassword}'";
       $res = mysqli_query($db,$sql) or die("result failed");
+      
       if(mysqli_num_rows($res) >0)
       {
          $row=mysqli_fetch_assoc($res);
          echo "<SCRIPT> alert('You are logIn as User')  </SCRIPT> ";  
-		$_SESSION['UID']=$row['Uid'];
-		$_SESSION['UNAME']=$row['Name'];
+		$_SESSION['SID']=$row['sid'];
+		$_SESSION['SPNAME']=$row['faname'];
+		$_SESSION['gmail']=$row['gmail'];
 
 
-         header("Location: http://localhost/MiniProject%20V.1/Pages/HomePage.php");
+
+
+         header("Location: http://localhost/MiniProject%20V.1/Pages/Serviceprociderdashboard.php");
       }
       else {
          $error = "Your Login Name or Password is invalid";
       }
 
-      echo "<SCRIPT> alert('You are logIn as User')  </SCRIPT> ";  
+      // echo "<SCRIPT> alert('You are logIn as User')  </SCRIPT> ";  
 
    }
-   else {
-      $sql = "SELECT * FROM admin WHERE Email = '{$myusername}' and Passworduser = '{$mypassword}'";
+   if($ROLE=="Admin"){
+      $sql = "SELECT * FROM admin WHERE AdminGmail = '{$myusername}' and AdminPass = '{$mypassword}'";
       $res = mysqli_query($db,$sql) or die("result failed");
       if(mysqli_num_rows($res) >0)
       {
          $row=mysqli_fetch_assoc($res);
          echo "<SCRIPT> alert('You are logIn as User')  </SCRIPT> ";  
-		$_SESSION['UID']=$row['Uid'];
-		$_SESSION['UNAME']=$row['Name'];
+		$_SESSION['UID']=$row['AdminId'];
+		$_SESSION['ANAME']=$row['AdminName'];
 
 
-         header("Location: http://localhost/MiniProject%20V.1/Pages/HomePage.php");
+      header("Location: http://localhost/MiniProject%20V.1/Pages/dashboard.php");
+         
       }
       else {
          $error = "Your Login Name or Password is invalid";
+
       }
 
    }
@@ -100,20 +115,20 @@
       
       // $count = mysqli_num_rows($result) or die("unsuccessful");
       
-      $res = mysqli_query($db,$sql) or die("result failed");
-      if(mysqli_num_rows($res) >0)
-      {
-         $row=mysqli_fetch_assoc($res);
-         echo "<SCRIPT> alert('hiiii')  </SCRIPT> ";  
-		$_SESSION['UID']=$row['Uid'];
-		$_SESSION['UNAME']=$row['Name'];
+      // $res = mysqli_query($db,$sql) or die("result failed");
+      // if(mysqli_num_rows($res) >0)
+      // {
+      //    $row=mysqli_fetch_assoc($res);
+      //    echo "<SCRIPT> alert('hiiii')  </SCRIPT> ";  
+		// $_SESSION['UID']=$row['Uid'];
+		// $_SESSION['UNAME']=$row['Name'];
 
 
-         header("Location: http://localhost/MiniProject%20V.1/Pages/HomePage.php");
-      }
-      else {
-         $error = "Your Login Name or Password is invalid";
-      }
+      //    header("Location: http://localhost/MiniProject%20V.1/Pages/HomePage.php");
+      // }
+      // else {
+      //    $error = "Your Login Name or Password is invalid";
+      // }
 
 
 
