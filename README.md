@@ -11,7 +11,7 @@ EasyWay is a user-friendly and comprehensive web portal designed to cater to the
   - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
-- [License](#license)
+
 
 ## Introduction
 
@@ -70,9 +70,6 @@ We welcome contributions from the community! If you'd like to contribute to the 
 6. Push the branch to your forked repository: `git push origin feature-new-feature`
 7. Create a pull request, detailing your changes and improvements.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
 
 ---
 
